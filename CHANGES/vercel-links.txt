@@ -127,7 +127,8 @@ FILM MASTERS (10)
 PRESENTATION BUILD (this project)
 ----------------------------------------
 Production               → https://presentaion-build.vercel.app
-Inspector                → https://vercel.com/pixelart-projects/presentaion-build/GwVFH6UkHXL9GsJ1XQrAWzPyHbZE
+GitHub                   → https://github.com/mailnormanjames-alt/Empathy-brief
+Inspector                → https://vercel.com/pixelart-projects/presentaion-build/FVam9fh6T7ZVVHYL6kpw3rNnnWSZ
 
 ----------------------------------------
 EXTERNAL SITES

@@ -1,0 +1,137 @@
+========================================
+EMPATHY STUDIO — ALL LINKS
+========================================
+Date: July 2026
+
+========================================
+GITHUB REPOSITORIES
+========================================
+
+--- Account: mailpixelarts-create ---
+PRESENTATION           → https://github.com/mailpixelarts-create/PRESENTATION
+Hair-Masters           → https://github.com/mailpixelarts-create/Hair-Masters
+cafe-masters           → https://github.com/mailpixelarts-create/cafe-masters
+YOGA-SOTD-             → https://github.com/mailpixelarts-create/YOGA-SOTD-
+ANTI-GRESTAURANT-BUILD → https://github.com/mailpixelarts-create/ANTI-GRESTAURANT-BUILD
+healing-sanctuaries    → https://github.com/mailpixelarts-create/healing-sanctuaries
+Overself-Transmission  → https://github.com/mailpixelarts-create/Overself-Transmission
+the-auction-lookbook   → https://github.com/mailpixelarts-create/the-auction-lookbook
+the-auction            → https://github.com/mailpixelarts-create/the-auction
+01-the-embassy         → https://github.com/mailpixelarts-create/01-the-embassy
+02-the-atelier         → https://github.com/mailpixelarts-create/02-the-atelier
+03-noir-atelier        → https://github.com/mailpixelarts-create/03-noir-atelier
+04-the-altitude        → https://github.com/mailpixelarts-create/04-the-altitude
+05-the-atelier-studio  → https://github.com/mailpixelarts-create/05-the-atelier-studio
+06-the-garden          → https://github.com/mailpixelarts-create/06-the-garden
+07-the-roast           → https://github.com/mailpixelarts-create/07-the-roast
+08-the-noir            → https://github.com/mailpixelarts-create/08-the-noir
+09-the-oasis           → https://github.com/mailpixelarts-create/09-the-oasis
+10-the-observatory     → https://github.com/mailpixelarts-create/10-the-observatory
+DVSA                   → https://github.com/mailpixelarts-create/DVSA
+m                      → https://github.com/mailpixelarts-create/m
+
+--- Account: mailnormanjames-alt ---
+empathy-studio         → https://github.com/mailnormanjames-alt/empathy-studio
+PRESENTATION           → https://github.com/mailnormanjames-alt/PRESENTATION
+CINEMA-                → https://github.com/mailnormanjames-alt/CINEMA-
+nj                     → https://github.com/mailnormanjames-alt/nj
+normanjames            → https://github.com/mailnormanjames-alt/normanjames
+pbfindia               → https://github.com/mailnormanjames-alt/pbfindia
+lion-lorraine-website  → https://github.com/mailnormanjames-alt/lion-lorraine-website
+
+========================================
+VERCEL DEPLOYMENTS
+========================================
+
+----------------------------------------
+HAIR MASTERS (10)
+----------------------------------------
+01. The Alchemist             → https://hair-masters-nine.vercel.app/THE-ALCHEMIST/
+02. The Runway Architect      → https://hair-masters-nine.vercel.app/THE-RUNWAY-ARCHITECT/
+03. The Bridal Sculptor       → https://hair-masters-nine.vercel.app/THE-BRIDAL-SCULPTOR/
+04. The Color Futurist        → https://hair-masters-nine.vercel.app/THE-COLOR-FUTURIST/
+05. The Editorial Minimalist  → https://hair-masters-nine.vercel.app/THE-EDITORIAL-MINIMALIST/
+06. The Texture Poet          → https://hair-masters-nine.vercel.app/THE-TEXTURE-POET/
+07. The Avant-Garde Transformer → https://hair-masters-nine.vercel.app/THE-AVANT-GARDE-TRANSFORMER/
+08. The Red Carpet Director   → https://hair-masters-nine.vercel.app/THE-RED-CARPET-DIRECTOR/
+09. The Precision Cutter      → https://hair-masters-nine.vercel.app/THE-PRECISION-CUTTER/
+10. The Hair Ritualist        → https://hair-masters-nine.vercel.app/THE-HAIR-RITUALIST/
+
+----------------------------------------
+LOOK-BOOK MASTERS (10)
+----------------------------------------
+01. The Auction            → https://the-auction-snowy.vercel.app
+02. The Ghost              → https://the-ghost-two.vercel.app
+03. The Maze               → https://the-maze-iota.vercel.app
+04. The Embassy            → https://the-embassy.vercel.app
+05. The Opera              → https://the-opera.vercel.app
+06. Imperial Express       → https://the-imperial-express.vercel.app
+07. The Observatory        → https://the-observatory-olive.vercel.app
+08. Cabaret Decadence      → https://cabaret-decadence-kappa.vercel.app
+09. Elena Marchetti        → https://elena-marchetti-livid.vercel.app
+10. Yuki Tanaka            → https://yuki-tanaka-eight.vercel.app
+
+----------------------------------------
+CAFE MASTERS (10)
+----------------------------------------
+01. The Embassy            → https://01-the-embassy.vercel.app
+02. La Equinox             → https://02-the-atelier.vercel.app
+03. Rust & Roast           → https://03-noir-atelier.vercel.app
+04. The Altitude           → https://04-the-altitude.vercel.app
+05. The Atelier Studio     → https://05-the-atelier-studio.vercel.app
+06. The Garden             → https://06-the-garden.vercel.app
+07. The Roast              → https://07-the-roast.vercel.app
+08. The Noir               → https://08-the-noir.vercel.app
+09. The Oasis              → https://09-the-oasis.vercel.app
+10. The Observatory        → https://10-the-observatory.vercel.app
+
+----------------------------------------
+YOGA MASTERS (10)
+----------------------------------------
+No live links yet (placeholder #)
+
+----------------------------------------
+RESTAURANT MASTERS (10)
+----------------------------------------
+01. The Alchemist          → https://restaurant-01-alchemist.vercel.app
+02. The Sanctuary          → https://restaurant-02-sanctuary.vercel.app
+03. The Grand Palace       → https://restaurant-03-grand-palace.vercel.app
+04. The Atlas              → https://restaurant-04-atlas.vercel.app
+05. The Forge              → https://restaurant-05-forge.vercel.app
+06. The Secret Garden      → https://restaurant-06-secret-garden.vercel.app
+07. The Foundry            → https://restaurant-07-foundry.vercel.app
+08. The Void               → https://restaurant-08-void.vercel.app
+09. The Chronicle          → https://restaurant-09-chronicle.vercel.app
+10. The Machine            → https://restaurant-10-machine.vercel.app
+
+----------------------------------------
+OCCULT MASTERS (10)
+----------------------------------------
+No live links yet (placeholder #)
+
+----------------------------------------
+FILM MASTERS (10)
+----------------------------------------
+01. Marie Dubois           → https://vite-mariedubois-cinema.vercel.app
+02. Amin Hassani           → https://vite-aminhassani-cinema.vercel.app
+03. Clara Voss             → https://vite-clara-voss-cinema.vercel.app
+04. Isabelle Frost         → https://vite-isabellefrost-cinema.vercel.app
+05. Kofi Mensah            → https://vite-kofimensah-cinema.vercel.app
+06. Nadia Okafor           → https://vite-nadia-okafor-cinema.vercel.app
+07. Thomas Renard          → https://vite-thomasrenard-cinema.vercel.app
+08. Rafael Santos          → https://vite-rafaelsantos-cinema.vercel.app
+09. Lea Moreau             → https://vite-leamoreau-cinema.vercel.app
+10. Yuki Tanaka            → https://vite-yukitanaka-cinema.vercel.app
+
+----------------------------------------
+EXTERNAL SITES
+----------------------------------------
+Studio Website            → https://www.empathystudio.in
+
+----------------------------------------
+CDN / FONTS
+----------------------------------------
+Google Fonts              → https://fonts.googleapis.com
+GSAP                      → https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+ScrollTrigger             → https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js
+Lenis                     → https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js

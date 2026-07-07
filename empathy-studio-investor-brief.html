@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empathy Studio — Investor Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,500&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0a0a;
+    --paper:#f6f5f2;
+    --gray-1:#8a8a86;
+    --gray-2:#c9c8c3;
+    --line:#2a2a28;
+    --line-on-paper: rgba(10,10,10,0.14);
+    --display: 'Bodoni Moda', 'Times New Roman', serif;
+    --body: 'Inter', -apple-system, sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%;
+    background:var(--paper);
+    color:var(--black);
+    font-family:var(--body);
+    overflow:hidden;
+  }
+  ::selection{background:var(--black);color:var(--paper);}
+
+  /* film sprocket ticks — signature element */
+  .sprockets{
+    position:fixed; top:0; bottom:0; width:22px; z-index:40;
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:28px 0; pointer-events:none;
+  }
+  .sprockets.left{left:0;} .sprockets.right{right:0;}
+  .sprockets span{
+    width:8px; height:8px; border-radius:1px;
+    background:var(--black); opacity:0.85; margin:0 auto;
+  }
+
+  .deck{
+    position:relative; height:100%; width:100%;
+  }
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 8vh 8vw;
+    opacity:0; transform:translateY(24px);
+    transition: opacity .7s cubic-bezier(.16,.8,.24,1), transform .7s cubic-bezier(.16,.8,.24,1);
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .slide.active{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .slide.invert{ background:var(--black); color:var(--paper); }
+
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gray-1); margin-bottom:28px; display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{ content:''; width:26px; height:1px; background:currentColor; opacity:.6; }
+
+  h1.disp{
+    font-family:var(--display); font-weight:600; letter-spacing:-0.01em;
+    line-height:0.94;
+  }
+  .slide[data-index="0"] h1.disp{ font-size:clamp(64px,11vw,168px); }
+  h2.disp{ font-family:var(--display); font-weight:500; line-height:1.02; letter-spacing:-0.01em; }
+
+  .lede{
+    font-family:var(--body); font-weight:300; font-size:clamp(16px,1.7vw,22px);
+    color:var(--gray-1); max-width:620px; line-height:1.5; margin-top:22px;
+  }
+  .slide.invert .lede{ color:var(--gray-2); }
+
+  .rule{ height:1px; background:var(--line-on-paper); width:100%; margin:34px 0; }
+  .slide.invert .rule{ background:rgba(246,245,242,0.18); }
+
+  /* COVER */
+  .cover-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; }
+  .cover-bg img{ width:100%; height:100%; object-fit:cover; filter:grayscale(100%); }
+  .cover-bg::after{ content:''; position:absolute; inset:0; background:rgba(246,245,242,0.5); }
+  .slide[data-index="0"] > *{ position:relative; z-index:1; }
+  .cover-meta{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-top:48px; font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--gray-1);
+  }
+  .cover-meta b{ color:var(--black); font-weight:700; }
+
+  /* SIDE IMAGE PANELS */
+  .slide-img-panel{ position:absolute; top:0; bottom:0; width:40%; z-index:0; overflow:hidden; }
+  .slide-img-panel img{ width:100%; height:100%; object-fit:cover; filter:grayscale(100%); opacity:0.18; }
+  .slide-img-panel.right{ right:0; }
+  .slide-img-panel.left{ left:0; }
+  .slide > *:not(.slide-img-panel){ position:relative; z-index:1; }
+
+  /* MANIFESTO */
+  .man-item{ display:flex; gap:28px; padding:26px 0; border-top:1px solid var(--line-on-paper); }
+  .man-item:last-child{ border-bottom:1px solid var(--line-on-paper); }
+  .man-num{ font-family:var(--mono); font-size:14px; color:var(--gray-1); padding-top:4px; min-width:34px; }
+  .man-text{ font-family:var(--display); font-style:italic; font-size:clamp(20px,2.4vw,32px); font-weight:500; line-height:1.28; max-width:820px; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns: 1.3fr 1fr; gap:60px; align-items:start; margin-top:8px; }
+  .about-body{ font-size:clamp(15px,1.35vw,19px); font-weight:300; line-height:1.65; color:#3a3a38; max-width:560px; }
+  .about-facts{ font-family:var(--mono); font-size:13px; line-height:2.3; color:var(--gray-1); border-left:1px solid var(--line-on-paper); padding-left:26px; }
+  .about-facts b{ color:var(--black); font-weight:700; }
+
+  /* SERVICES */
+  .svc-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-on-paper); margin-top:10px; border:1px solid var(--line-on-paper); }
+  .svc-cell{ background:var(--paper); padding:34px 32px; }
+  .svc-num{ font-family:var(--mono); font-size:12px; color:var(--gray-1); }
+  .svc-title{ font-family:var(--display); font-size:clamp(20px,2vw,28px); font-weight:600; margin:10px 0 8px; }
+  .svc-desc{ font-size:14px; font-weight:300; color:#4a4a48; line-height:1.5; }
+
+  /* WHY NOW */
+  .why-list{ margin-top:10px; }
+  .why-row{ display:grid; grid-template-columns:64px 1fr; gap:24px; padding:20px 0; border-top:1px solid rgba(246,245,242,0.18); }
+  .why-row:last-child{ border-bottom:1px solid rgba(246,245,242,0.18); }
+  .why-tag{ font-family:var(--mono); font-size:12px; color:#8a8a86; padding-top:4px; }
+  .why-body{ font-size:clamp(15px,1.4vw,19px); font-weight:300; line-height:1.55; color:var(--gray-2); max-width:680px; }
+  .why-body b{ color:var(--paper); font-weight:500; }
+
+  /* METHOD */
+  .method-row{ display:flex; gap:0; margin-top:14px; align-items:stretch; }
+  .method-step{ flex:1; padding:0 30px; border-right:1px solid var(--line-on-paper); display:flex; flex-direction:column; }
+  .method-step:last-child{ border-right:none; }
+  .method-step:not(:first-child){ padding-left:30px; }
+  .method-word{ font-family:var(--display); font-style:italic; font-size:clamp(26px,3vw,40px); font-weight:600; margin-bottom:14px; }
+  .method-desc{ font-size:14px; font-weight:300; color:#4a4a48; line-height:1.5; }
+
+  /* ASK */
+  .ask-box{
+    border:1.5px dashed var(--line-on-paper); padding:40px; margin-top:20px;
+  }
+  .ask-row{ display:flex; align-items:baseline; gap:18px; padding:16px 0; border-bottom:1px dotted var(--line-on-paper); }
+  .ask-row:last-child{ border-bottom:none; }
+  .ask-label{ font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--gray-1); min-width:180px; }
+  .ask-fill{ flex:1; font-family:var(--display); font-style:italic; font-size:19px; color:var(--gray-1); }
+  .ask-note{ font-family:var(--mono); font-size:11px; color:var(--gray-1); margin-top:22px; letter-spacing:.04em; }
+
+  /* CLOSING */
+  .close-wrap{ display:flex; flex-direction:column; align-items:flex-start; height:100%; justify-content:space-between; }
+  .close-cta{ font-family:var(--mono); font-size:13px; letter-spacing:.08em; color:var(--gray-2); margin-top:26px; }
+  .close-cta a{ color:var(--paper); text-decoration:underline; text-underline-offset:4px; }
+  .footer{ font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--gray-2); display:flex; gap:24px; align-items:center; margin-top:auto; padding-top:40px; }
+  .footer a{ color:var(--paper); text-decoration:none; font-weight:600; }
+  .footer a:hover{ text-decoration:underline; }
+  .footer .heart{ color:#e53935; }
+
+  /* nav chrome */
+  .frame-counter{
+    position:fixed; bottom:34px; left:8vw; font-family:var(--mono); font-size:11px; letter-spacing:.12em; z-index:50; color:var(--gray-1);
+  }
+  .slide.invert ~ .frame-counter{ }
+  .progress{
+    position:fixed; bottom:34px; right:8vw; font-family:var(--mono); font-size:11px; letter-spacing:.12em; z-index:50; color:var(--gray-1);
+  }
+  .dots{ position:fixed; right:44px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:10px; z-index:50; }
+  .dot{ width:6px; height:6px; border-radius:50%; background:var(--gray-2); cursor:pointer; transition:background .3s, transform .3s; }
+  .dot.on{ background:var(--black); transform:scale(1.4); }
+  .dot.on.inv{ background:var(--paper); }
+
+  .arrows{ position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:50; display:flex; gap:22px; font-family:var(--mono); font-size:11px; color:var(--gray-1); }
+  .arrows span{ cursor:pointer; }
+  .arrows span:hover{ color:var(--black); }
+
+  @media (max-width:820px){
+    .slide{ padding:9vh 7vw; }
+    .slide-img-panel{ display:none; }
+    .about-grid{ grid-template-columns:1fr; gap:34px; }
+    .svc-grid{ grid-template-columns:1fr; }
+    .method-row{ flex-direction:column; gap:26px; }
+    .method-step{ border-right:none; padding:0 !important; border-bottom:1px solid var(--line-on-paper); padding-bottom:20px !important; }
+    .dots{ display:none; }
+    .ask-row{ flex-direction:column; gap:4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sprockets left">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="sprockets right">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- 0 COVER -->
+  <section class="slide" data-index="0">
+    <div class="cover-bg"><img src="cover.jpg" alt="Empathy Studio"></div>
+    <div class="eyebrow">Confidential — Investor Brief · 2026</div>
+    <h1 class="disp">EMPATHY</h1>
+    <div class="lede" style="max-width:520px;">Emotion&#8209;led design studio. Brand identity, cinematic web design, UI/UX, and 3D &amp; motion — for brands and filmmakers who need to be felt before they're understood.</div>
+    <div class="cover-meta">
+      <span>Studio founded by <b>Norman James</b></span>
+      <span>Mumbai, India</span>
+    </div>
+  </section>
+
+  <!-- 1 MANIFESTO -->
+  <section class="slide" data-index="1">
+    <div class="slide-img-panel right"><img src="manifesto.jpg" alt=""></div>
+    <div class="eyebrow">Why we exist</div>
+    <h2 class="disp" style="font-size:clamp(32px,4vw,54px); margin-bottom:8px;">Three rules, no exceptions.</h2>
+    <div style="margin-top:18px;">
+      <div class="man-item">
+        <div class="man-num">01</div>
+        <div class="man-text">Before strategy, before aesthetics — we start by asking how we want people to feel. That question drives everything.</div>
+      </div>
+      <div class="man-item">
+        <div class="man-num">02</div>
+        <div class="man-text">Every element earns its place. If it doesn't communicate, it doesn't exist.</div>
+      </div>
+      <div class="man-item">
+        <div class="man-num">03</div>
+        <div class="man-text">We make things properly. The detail nobody notices consciously is the detail that makes someone stay.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 ABOUT -->
+  <section class="slide" data-index="2">
+    <div class="slide-img-panel left"><img src="about.jpg" alt=""></div>
+    <div class="eyebrow">About</div>
+    <h2 class="disp" style="font-size:clamp(30px,3.6vw,48px); margin-bottom:22px;">A studio, not a vendor.</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        Empathy is a Mumbai-based, emotion-led design studio built for brands, founders, and filmmakers who need to be felt before they're understood. Founded by Norman James, the studio treats every engagement as a directed piece of communication — never a template, never a formula.
+        <br><br>
+        Work spans brand identity, cinematic web design and development, product UI/UX, and 3D &amp; motion — for clients across independent film (Bakery Films) and premium brand launches in the Indian market, with growing reach into international briefs.
+      </div>
+      <div class="about-facts">
+        <div><b>Founded by</b> Norman James</div>
+        <div><b>Based in</b> Mumbai, India</div>
+        <div><b>Disciplines</b> Brand · Web · UI/UX · 3D &amp; Motion</div>
+        <div><b>Reach</b> India, expanding international</div>
+        <div><b>Model</b> Studio-led, project &amp; retainer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 WHAT WE DO -->
+  <section class="slide" data-index="3">
+    <div class="eyebrow">What we do</div>
+    <h2 class="disp" style="font-size:clamp(30px,3.6vw,48px);">Four disciplines. One direction.</h2>
+    <div class="svc-grid">
+      <div class="svc-cell">
+        <div class="svc-num">01</div>
+        <div class="svc-title">Brand Identity</div>
+        <div class="svc-desc">Logo, colour, type, language, and the guidelines that hold it together.</div>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-num">02</div>
+        <div class="svc-title">Web Design &amp; Dev</div>
+        <div class="svc-desc">Design paired with Next.js builds and GSAP-driven motion.</div>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-num">03</div>
+        <div class="svc-title">UI / UX Design</div>
+        <div class="svc-desc">Apps, dashboards, and product design built to be used, not just seen.</div>
+      </div>
+      <div class="svc-cell">
+        <div class="svc-num">04</div>
+        <div class="svc-title">3D &amp; Motion</div>
+        <div class="svc-desc">Animation, renders, and film titles for screen and stage.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 WHY NOW -->
+  <section class="slide invert" data-index="4">
+    <div class="eyebrow">Why now</div>
+    <h2 class="disp" style="font-size:clamp(30px,3.6vw,48px);">The market is ready for direction.</h2>
+    <div class="why-list">
+      <div class="why-row">
+        <div class="why-tag">DEMAND</div>
+        <div class="why-body">Indian brand and founder spend on premium identity and digital presence is rising faster than the supply of studios that can direct it end-to-end.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-tag">POSITION</div>
+        <div class="why-body"><b>Empathy sits at the intersection</b> of brand, web, product, and motion — most competitors specialise in one and outsource the rest, losing the thread.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-tag">LEVERAGE</div>
+        <div class="why-body">An AI-native creative workflow lets a small studio work at the pace and polish of a much larger one, without diluting craft.</div>
+      </div>
+      <div class="why-row">
+        <div class="why-tag">TIMING</div>
+        <div class="why-body">Global clients are actively looking for Indian creative talent that meets international craft standards — the door is open now.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 METHOD -->
+  <section class="slide" data-index="5">
+    <div class="eyebrow">How we work</div>
+    <h2 class="disp" style="font-size:clamp(30px,3.6vw,48px);">Feel. Direct. Craft.</h2>
+    <div class="method-row">
+      <div class="method-step">
+        <div class="method-word">Feel</div>
+        <div class="method-desc">We start every brief by naming the emotion the audience should leave with — before a single pixel is placed.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-word">Direct</div>
+        <div class="method-desc">Every choice is made in service of that feeling. What doesn't communicate is cut, without exception.</div>
+      </div>
+      <div class="method-step">
+        <div class="method-word">Craft</div>
+        <div class="method-desc">Execution is treated as the message. The unnoticed detail is what makes someone stay.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 THE ASK (BLANK) -->
+  <section class="slide invert" data-index="6">
+    <div class="eyebrow">The ask</div>
+    <h2 class="disp" style="font-size:clamp(30px,3.6vw,48px);">Seeking funding.</h2>
+    <div class="ask-box">
+      <div class="ask-row"><div class="ask-label">Round</div><div class="ask-fill">&nbsp;</div></div>
+      <div class="ask-row"><div class="ask-label">Amount raising</div><div class="ask-fill">&nbsp;</div></div>
+      <div class="ask-row"><div class="ask-label">Use of funds</div><div class="ask-fill">&nbsp;</div></div>
+      <div class="ask-row"><div class="ask-label">Runway</div><div class="ask-fill">&nbsp;</div></div>
+      <div class="ask-row"><div class="ask-label">Terms</div><div class="ask-fill">&nbsp;</div></div>
+    </div>
+    <div class="ask-note">— left intentionally blank, to be filled in —</div>
+  </section>
+
+  <!-- 7 CLOSING -->
+  <section class="slide" data-index="7">
+    <div class="slide-img-panel right"><img src="method.jpg" alt=""></div>
+    <div class="close-wrap">
+      <div class="eyebrow">Closing</div>
+      <h1 class="disp" style="font-size:clamp(48px,8vw,120px);">Let's build<br>what people feel.</h1>
+      <div class="close-cta">Norman James · Empathy Studio · Mumbai, India</div>
+      <div class="footer">
+        <span>© Norman James</span>
+        <span><span class="heart">❤</span> <a href="https://www.empathystudio.in">www.empathystudio.in</a></span>
+        <span>+ 91 9833274305 &nbsp; + 91 9833274308</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="frame-counter" id="frameLabel">FRAME</div>
+<div class="progress" id="progressLabel">01 / 08</div>
+<div class="arrows"><span id="prevBtn">← PREV</span><span id="nextBtn">NEXT →</span></div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  const dotsWrap = document.getElementById('dots');
+  const progressLabel = document.getElementById('progressLabel');
+  let current = 0;
+
+  slides.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' on':'');
+    d.addEventListener('click', ()=>go(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function pad(n){ return String(n+1).padStart(2,'0'); }
+
+  function render(){
+    slides.forEach((s,i)=> s.classList.toggle('active', i===current));
+    const dots = Array.from(dotsWrap.children);
+    dots.forEach((d,i)=>{
+      d.classList.toggle('on', i===current);
+      d.classList.toggle('inv', slides[current].classList.contains('invert'));
+    });
+    progressLabel.textContent = pad(current) + ' / ' + pad(total-1);
+    progressLabel.style.color = slides[current].classList.contains('invert') ? '#c9c8c3' : '#8a8a86';
+  }
+
+  function go(i){
+    current = Math.max(0, Math.min(total-1, i));
+    render();
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>go(current+1));
+  document.getElementById('prevBtn').addEventListener('click', ()=>go(current-1));
+
+  window.addEventListener('keydown', (e)=>{
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){ e.preventDefault(); go(current+1); }
+    if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){ e.preventDefault(); go(current-1); }
+  });
+
+  let touchStartY = null;
+  window.addEventListener('touchstart', e=> touchStartY = e.touches[0].clientY);
+  window.addEventListener('touchend', e=>{
+    if(touchStartY===null) return;
+    const dy = touchStartY - e.changedTouches[0].clientY;
+    if(Math.abs(dy) > 60){ go(current + (dy>0?1:-1)); }
+    touchStartY = null;
+  });
+
+  let wheelLock = false;
+  window.addEventListener('wheel', (e)=>{
+    if(wheelLock) return;
+    if(Math.abs(e.deltaY) < 30) return;
+    wheelLock = true;
+    go(current + (e.deltaY>0?1:-1));
+    setTimeout(()=> wheelLock=false, 700);
+  }, {passive:true});
+
+  render();
+</script>
+
+</body>
+</html>

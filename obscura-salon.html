@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBSCURA SALON — Aurelia Vance — House I</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E0E10;
+    --ink-2:#17171A;
+    --paper:#F3EFE8;
+    --silver:#B8B8B8;
+    --silver-dim: rgba(184,184,184,0.35);
+    --line: rgba(243,239,232,0.14);
+    --font-display:'Bodoni Moda', serif;
+    --font-mono:'Space Mono', monospace;
+    --ease: cubic-bezier(0.16,1,0.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:auto;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-mono);
+    overflow-x:hidden;
+    cursor:none;
+  }
+  ::selection{background:var(--paper);color:var(--ink);}
+
+  /* ---------- CUSTOM CURSOR / SPOTLIGHT ---------- */
+  .spotlight{
+    position:fixed;
+    top:0;left:0;
+    width:520px;height:520px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:40;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(243,239,232,0.06) 0%, rgba(243,239,232,0.02) 40%, transparent 70%);
+    transition: opacity 0.4s ease;
+    mix-blend-mode: screen;
+  }
+  .dot-cursor{
+    position:fixed;
+    top:0;left:0;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--paper);
+    pointer-events:none;
+    z-index:41;
+    transform:translate(-50%,-50%);
+  }
+  .ring-cursor{
+    position:fixed;
+    top:0;left:0;
+    width:34px;height:34px;
+    border:1px solid var(--silver-dim);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:41;
+    transform:translate(-50%,-50%);
+  }
+  @media (hover:none){
+    .spotlight,.dot-cursor,.ring-cursor{display:none;}
+    body{cursor:auto;}
+  }
+
+  /* ---------- SPELL BREAKER ---------- */
+  .breaker{
+    display:none;
+  }
+  .breaker-eyes{
+    width:180px;
+    height:60px;
+    opacity:0;
+    background:radial-gradient(ellipse 90px 34px at 30% 50%, rgba(230,225,255,0.35), transparent 65%),
+                radial-gradient(ellipse 90px 34px at 70% 50%, rgba(230,225,255,0.35), transparent 65%);
+    filter: blur(0.5px);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  section{position:relative;}
+  .frame-nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:30;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 1.6rem 2.4rem;
+    font-size:0.68rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--silver);
+    mix-blend-mode:difference;
+  }
+  .frame-nav a{color:inherit;text-decoration:none;}
+
+  .hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(184,184,184,0.06), transparent 60%),
+      linear-gradient(180deg, #0A0A0C 0%, #0E0E10 60%, #0E0E10 100%);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+  .kicker{
+    font-size:0.7rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--silver);
+    margin-bottom:1.6rem;
+    opacity:0;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(3.2rem, 10vw, 8.5rem);
+    line-height:0.92;
+    letter-spacing:0.01em;
+    opacity:0;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--silver);}
+  .hero-sub{
+    margin-top:2rem;
+    max-width:520px;
+    font-size:0.82rem;
+    line-height:1.9;
+    color:var(--silver);
+    opacity:0;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:3rem;
+    font-size:0.65rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--silver);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.8rem;
+    opacity:0;
+  }
+  .scroll-cue .line{width:1px;height:40px;background:var(--silver-dim);position:relative;overflow:hidden;}
+  .scroll-cue a{color:inherit;text-decoration:none;}
+  .scroll-cue .line::after{
+    content:'';
+    position:absolute;top:-100%;left:0;width:100%;height:100%;
+    background:var(--paper);
+    animation:drip 2.4s var(--ease) infinite;
+  }
+  @keyframes drip{ to{top:100%;} }
+
+  /* ---------- HERO STATS ---------- */
+  .hero-stats{
+    display:flex;
+    gap:2.5rem;
+    margin-top:2.5rem;
+  }
+  .hero-stat{
+    font-family:var(--font-mono);
+    font-size:0.6rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--silver);
+  }
+  .hero-stat-num{
+    font-family:var(--font-display);
+    font-size:1rem;
+    font-weight:500;
+    color:var(--paper);
+    margin-right:0.3rem;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer{
+    display:none;
+  }
+  .footer-line{
+    width:60px;
+    height:1px;
+    background:var(--silver-dim);
+    margin:0 auto 2.5rem;
+  }
+  .footer-studio{
+    font-family:var(--font-mono);
+    font-size:0.65rem;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--silver);
+    margin-bottom:1rem;
+  }
+  .footer-copy{
+    font-family:var(--font-mono);
+    font-size:0.6rem;
+    letter-spacing:0.15em;
+    color:var(--silver-dim);
+    margin-bottom:0.6rem;
+  }
+  .footer-love{
+    font-family:var(--font-mono);
+    font-size:0.58rem;
+    letter-spacing:0.12em;
+    color:var(--silver-dim);
+  }
+  .footer-phone{
+    font-family:var(--font-mono);
+    font-size:0.58rem;
+    letter-spacing:0.12em;
+    color:var(--silver-dim);
+    margin-top:0.6rem;
+  }
+
+  /* ---------- REVEAL UTIL ---------- */
+  [data-reveal]{opacity:0;transform:translateY(24px);transition: opacity 1s var(--ease), transform 1s var(--ease);}
+  [data-reveal].revealed{opacity:1;transform:translateY(0);}
+  [data-fade]{opacity:0;transform:translateY(18px);will-change:opacity,transform;}
+
+</style>
+</head>
+<body>
+
+<div class="breaker" id="breaker">
+  <div class="breaker-eyes" id="breakerEyes"></div>
+</div>
+
+<div class="spotlight" id="spotlight"></div>
+<div class="ring-cursor" id="ring"></div>
+<div class="dot-cursor" id="dot"></div>
+
+<nav class="frame-nav">
+  <a href="#top">EMPATHY STUDIO</a>
+  <span>VOLUME 1 — THE ACCENT</span>
+</nav>
+
+<section class="hero" id="top">
+  <div class="kicker" data-fade>The Anthology</div>
+  <h1 data-fade>EMPATHY<br><em>Studio</em></h1>
+  <p class="hero-sub" data-fade>This is not a portfolio. This is a cinematic anthology — seventy creative experiences, each built as a self-contained world with its own identity, motion language, and emotional architecture. Six collections. One unified vision of mastery.</p>
+  <div class="hero-stats" data-fade>
+    <div class="hero-stat"><span class="hero-stat-num">7</span> Collections</div>
+    <div class="hero-stat"><span class="hero-stat-num">70</span> Experiences</div>
+    <div class="hero-stat"><span class="hero-stat-num">1</span> Vision</div>
+  </div>
+  <div class="scroll-cue" data-fade><a href="#"><span>ENTER</span></a><div class="line"></div></div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-line"></div>
+  <p class="footer-studio">A LOOKBOOK Studio Experience</p>
+  <p class="footer-copy">&copy; Norman James</p>
+  <p class="footer-love">made with love ❤️ by Empathy Studio</p>
+  <p class="footer-phone">+91 9833274308 &nbsp; +91 9833274305</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.18/lenis.min.js"></script>
+<script>
+(function(){
+  /* ---------- LENIS SMOOTH SCROLL ---------- */
+  var lenis = null;
+  try {
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  } catch(e){}
+
+  /* ---------- CURSOR / SPOTLIGHT ---------- */
+  var spotlight = document.getElementById('spotlight');
+  var ring = document.getElementById('ring');
+  var dot = document.getElementById('dot');
+  var mx=window.innerWidth/2, my=window.innerHeight/2;
+  var sx=mx, sy=my, rx=mx, ry=my;
+
+  window.addEventListener('mousemove', function(e){
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+  });
+
+  function loop(){
+    sx += (mx - sx) * 0.07; sy += (my - sy) * 0.07; // 0.3s-ish lag
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    spotlight.style.left = sx+'px'; spotlight.style.top = sy+'px';
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* ---------- HERO REVEAL ---------- */
+  function revealHero(){
+    var els = document.querySelectorAll('[data-fade]');
+    els.forEach(function(el, i){
+      if (window.gsap){
+        gsap.to(el, { opacity:1, y:0, duration:1.1, delay: i*0.12, ease:'power3.out' });
+      } else {
+        el.style.opacity = 1;
+      }
+    });
+  }
+  revealHero();
+
+  /* ---------- SCROLL REVEALS ---------- */
+  var reveals = document.querySelectorAll('[data-reveal]');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(function(el){ io.observe(el); });
+
+})();
+</script>
+
+</body>
+</html>

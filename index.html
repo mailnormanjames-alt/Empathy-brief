@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASTERS COLLECTION — Seven Worlds of Creative Vision</title>
+  <meta name="description" content="Seventy experiences. Seven worlds. A curated anthology of creative mastery by Empathy Studio.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0A0A0A;
+      --surface: #111111;
+      --surface-alt: #141414;
+      --border: #1A1A1A;
+      --border-hover: #2A2A2A;
+      --muted: #555555;
+      --stone: #888888;
+      --champagne: #D4C4A8;
+      --white: #F5F0EB;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --nav-height: 56px;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--champagne);
+      background: var(--black);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ========== GRAIN ========== */
+    .grain {
+      position: fixed; inset: -50%; width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      opacity: 0.03; pointer-events: none; z-index: 9999;
+      animation: grainDrift 8s steps(10) infinite;
+    }
+    @keyframes grainDrift {
+      0% { transform: translate(0,0); } 25% { transform: translate(-2%,2%); }
+      50% { transform: translate(2%,-1%); } 75% { transform: translate(-1%,-2%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ========== STICKY NAV ========== */
+    .sticky-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-height);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sticky-nav.visible { transform: translateY(0); }
+
+    .nav-inner {
+      width: 100%; max-width: 1400px; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--font-display); font-size: 0.75rem;
+      letter-spacing: 0.2em; color: var(--white); font-weight: 700;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .trilogy-back {
+      font-family: var(--font-body); font-size: 0.5625rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; padding: 8px 14px;
+      border-radius: 2px; transition: all 0.3s ease; white-space: nowrap;
+      cursor: pointer; background: none; border: none;
+    }
+    .trilogy-back:hover { color: var(--champagne); }
+    .nav-links {
+      display: flex; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.5625rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; padding: 8px 14px;
+      border-radius: 2px; transition: all 0.3s ease; white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--champagne); }
+    .nav-links a.active { color: var(--white); background: rgba(255,255,255,0.05); }
+
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative;
+    }
+    .nav-hamburger span {
+      display: block; width: 18px; height: 1px; background: var(--champagne);
+      position: absolute; left: 7px; transition: all 0.3s ease;
+    }
+    .nav-hamburger span:nth-child(1) { top: 10px; }
+    .nav-hamburger span:nth-child(2) { top: 16px; }
+    .nav-hamburger span:nth-child(3) { top: 22px; }
+    .nav-hamburger.open span:nth-child(1) { top: 16px; transform: rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
+
+    .nav-mobile {
+      display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 16px 40px;
+      flex-direction: column; gap: 4px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; padding: 12px 0;
+      border-bottom: 1px solid var(--border); transition: color 0.3s;
+    }
+    .nav-mobile a:last-child { border-bottom: none; }
+    .nav-mobile a:hover, .nav-mobile a.active { color: var(--white); }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 80px 40px; text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(154,124,82,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(154,124,82,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(100,80,60,0.03) 0%, transparent 50%),
+        var(--black);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 1000px; }
+    .hero-label {
+      font-family: var(--font-body); font-size: 0.625rem; letter-spacing: 0.4em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 1s 0.3s ease forwards;
+    }
+    .hero-title {
+      font-family: var(--font-display); font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 900; color: var(--white); line-height: 0.92;
+      letter-spacing: 0.02em; margin-bottom: 24px;
+      opacity: 0; animation: fadeUp 1s 0.5s ease forwards;
+    }
+    .hero-title em {
+      font-style: italic; font-weight: 400; color: var(--stone);
+    }
+    .hero-sub {
+      font-family: var(--font-display); font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-style: italic; color: var(--stone); max-width: 650px; margin: 0 auto 48px;
+      line-height: 1.6;
+      opacity: 0; animation: fadeUp 1s 0.7s ease forwards;
+    }
+    .hero-line {
+      width: 60px; height: 1px; background: rgba(154,124,82,0.4);
+      margin: 0 auto 48px;
+      opacity: 0; animation: fadeUp 1s 0.9s ease forwards;
+    }
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 1s 1s ease forwards;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; color: var(--white); display: block;
+    }
+    .hero-stat-label {
+      font-size: 0.5625rem; letter-spacing: 0.2em; color: var(--muted);
+      text-transform: uppercase; margin-top: 4px;
+    }
+    .hero-scroll {
+      margin-top: 60px;
+      font-size: 0.5rem; letter-spacing: 0.3em; color: var(--muted);
+      text-transform: uppercase;
+      opacity: 0; animation: fadeUp 1s 1.2s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== INTRO ========== */
+    .intro {
+      padding: 120px 40px; max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .intro-label {
+      font-size: 0.5625rem; letter-spacing: 0.4em; color: var(--muted);
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .intro-text {
+      font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 400; line-height: 1.6; color: var(--champagne);
+    }
+    .intro-text em { font-style: italic; color: var(--white); }
+
+    /* ========== COLLECTION SECTION ========== */
+    .collection {
+      padding: 100px 40px 140px; max-width: 1400px; margin: 0 auto;
+      scroll-margin-top: calc(var(--nav-height) + 20px);
+    }
+    .collection-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+      flex-wrap: wrap; gap: 12px;
+    }
+    .collection-title-group { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    .collection-title {
+      font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; color: var(--white);
+    }
+    .collection-count {
+      font-size: 0.5625rem; letter-spacing: 0.2em; color: var(--muted);
+      text-transform: uppercase; background: rgba(255,255,255,0.04);
+      padding: 4px 12px; border-radius: 2px;
+    }
+    .collection-tagline {
+      font-family: var(--font-display); font-style: italic; font-size: 0.875rem;
+      color: var(--stone); margin-bottom: 48px; max-width: 600px;
+    }
+
+    /* ========== SECTION DIVIDER ========== */
+    .section-divider {
+      max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    }
+    .section-divider-inner {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* ========== CARD GRID ========== */
+    .world-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    }
+
+    .world-card {
+      position: relative; display: block; overflow: hidden;
+      background: var(--surface); aspect-ratio: 16/10;
+      text-decoration: none; color: var(--champagne);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .world-card:hover { z-index: 2; }
+
+    .world-card-img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.65) saturate(0.8);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .world-card:hover .world-card-img {
+      filter: brightness(0.8) saturate(0.9);
+      transform: scale(1.05);
+    }
+
+    /* Placeholder card backgrounds */
+    .placeholder-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      filter: brightness(0.5) saturate(0.8);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .world-card:hover .placeholder-img {
+      filter: brightness(0.65) saturate(0.95);
+      transform: scale(1.05);
+    }
+
+    .world-card-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, transparent 30%, rgba(10,10,10,0.85) 100%);
+    }
+
+    .world-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      padding: 32px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .world-card-num {
+      font-size: 0.5rem; letter-spacing: 0.3em; color: rgba(154,124,82,0.6);
+      text-transform: uppercase;
+    }
+    .world-card-name {
+      font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.75rem);
+      font-weight: 700; color: var(--white); line-height: 1.2;
+      text-decoration: none;
+      background-image: linear-gradient(rgba(154,124,82,0.8), rgba(154,124,82,0.8));
+      background-size: 0% 2px;
+      background-position: left bottom;
+      background-repeat: no-repeat;
+      transition: color 0.4s, background-size 0.4s ease;
+    }
+    .world-card:hover .world-card-name { color: var(--champagne); background-size: 100% 2px; }
+    .world-card-desc {
+      font-size: 0.75rem; color: var(--stone); letter-spacing: 0.05em;
+      transition: color 0.4s;
+    }
+    .world-card:hover .world-card-desc { color: var(--champagne); }
+
+    .world-card-arrow {
+      position: absolute; top: 24px; right: 24px; z-index: 2;
+      width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--stone);
+      opacity: 0; transform: translate(-8px, 8px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .world-card:hover .world-card-arrow {
+      opacity: 1; transform: translate(0, 0);
+      border-color: rgba(154,124,82,0.4); color: var(--champagne);
+    }
+
+    /* ========== PLACEHOLDER GRADIENT THEMES ========== */
+
+    /* Look-Book Masters — Fashion / Editorial */
+    .lookbook-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+    .lookbook-2 { background: linear-gradient(135deg, #2d1b4e 0%, #1a1a2e 50%, #4a1942 100%); }
+    .lookbook-3 { background: linear-gradient(135deg, #1b2838 0%, #2d3436 50%, #636e72 100%); }
+    .lookbook-4 { background: linear-gradient(135deg, #0c0c1d 0%, #1a1a2e 50%, #2d1b4e 100%); }
+    .lookbook-5 { background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 50%, #4a1942 100%); }
+    .lookbook-6 { background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%); }
+    .lookbook-7 { background: linear-gradient(135deg, #2d1b4e 0%, #4a1942 50%, #1a1a2e 100%); }
+    .lookbook-8 { background: linear-gradient(135deg, #16213e 0%, #1a1a2e 50%, #2d1b4e 100%); }
+    .lookbook-9 { background: linear-gradient(135deg, #636e72 0%, #2d3436 50%, #1b2838 100%); }
+    .lookbook-10 { background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 50%, #2d1b4e 100%); }
+
+    /* Cafe Masters — Warm Coffee / Earth */
+    .cafe-1 { background: linear-gradient(135deg, #3c1a00 0%, #5c3310 50%, #2e1503 100%); }
+    .cafe-2 { background: linear-gradient(135deg, #4a2c0a 0%, #6b3a1f 50%, #3c1a00 100%); }
+    .cafe-3 { background: linear-gradient(135deg, #2e1503 0%, #4a2c0a 50%, #7b4b2a 100%); }
+    .cafe-4 { background: linear-gradient(135deg, #5c3310 0%, #3c1a00 50%, #2e1503 100%); }
+    .cafe-5 { background: linear-gradient(135deg, #6b3a1f 0%, #4a2c0a 50%, #3c1a00 100%); }
+    .cafe-6 { background: linear-gradient(135deg, #3c1a00 0%, #2e1503 50%, #5c3310 100%); }
+    .cafe-7 { background: linear-gradient(135deg, #7b4b2a 0%, #5c3310 50%, #4a2c0a 100%); }
+    .cafe-8 { background: linear-gradient(135deg, #2e1503 0%, #3c1a00 50%, #6b3a1f 100%); }
+    .cafe-9 { background: linear-gradient(135deg, #4a2c0a 0%, #7b4b2a 50%, #5c3310 100%); }
+    .cafe-10 { background: linear-gradient(135deg, #5c3310 0%, #2e1503 50%, #3c1a00 100%); }
+
+    /* Yoga Masters — Calm Zen */
+    .yoga-1 { background: linear-gradient(135deg, #1a2a1a 0%, #2d4a2d 50%, #1a3a2a 100%); }
+    .yoga-2 { background: linear-gradient(135deg, #1a2a3a 0%, #2a3a4a 50%, #1a2a2a 100%); }
+    .yoga-3 { background: linear-gradient(135deg, #2d3a2d 0%, #1a2a1a 50%, #3a4a3a 100%); }
+    .yoga-4 { background: linear-gradient(135deg, #1a3a2a 0%, #2d4a3d 50%, #1a2a2a 100%); }
+    .yoga-5 { background: linear-gradient(135deg, #2a3a4a 0%, #1a2a3a 50%, #2d3a2d 100%); }
+    .yoga-6 { background: linear-gradient(135deg, #3a4a3a 0%, #2d3a2d 50%, #1a2a1a 100%); }
+    .yoga-7 { background: linear-gradient(135deg, #1a2a2a 0%, #1a3a2a 50%, #2d4a3d 100%); }
+    .yoga-8 { background: linear-gradient(135deg, #2d4a2d 0%, #1a2a1a 50%, #2a3a4a 100%); }
+    .yoga-9 { background: linear-gradient(135deg, #1a2a3a 0%, #2d3a2d 50%, #1a2a2a 100%); }
+    .yoga-10 { background: linear-gradient(135deg, #2d4a3d 0%, #1a2a2a 50%, #3a4a3a 100%); }
+
+    /* Restaurant Masters — Rich Culinary */
+    .restaurant-1 { background: linear-gradient(135deg, #2a0a0a 0%, #4a1a1a 50%, #3a0f0f 100%); }
+    .restaurant-2 { background: linear-gradient(135deg, #3a1a0a 0%, #5a2a1a 50%, #2a0a0a 100%); }
+    .restaurant-3 { background: linear-gradient(135deg, #1a0a0a 0%, #3a1a0a 50%, #4a1a1a 100%); }
+    .restaurant-4 { background: linear-gradient(135deg, #4a1a1a 0%, #2a0a0a 50%, #3a1a0a 100%); }
+    .restaurant-5 { background: linear-gradient(135deg, #5a2a1a 0%, #3a0f0f 50%, #2a0a0a 100%); }
+    .restaurant-6 { background: linear-gradient(135deg, #3a0f0f 0%, #4a1a1a 50%, #1a0a0a 100%); }
+    .restaurant-7 { background: linear-gradient(135deg, #2a0a0a 0%, #5a2a1a 50%, #3a1a0a 100%); }
+    .restaurant-8 { background: linear-gradient(135deg, #4a1a1a 0%, #3a1a0a 50%, #5a2a1a 100%); }
+    .restaurant-9 { background: linear-gradient(135deg, #3a0f0f 0%, #2a0a0a 50%, #4a1a1a 100%); }
+    .restaurant-10 { background: linear-gradient(135deg, #1a0a0a 0%, #4a1a1a 50%, #3a0f0f 100%); }
+
+    /* Occult Masters — Dark Mystical */
+    .occult-1 { background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2a 50%, #0f0a2a 100%); }
+    .occult-2 { background: linear-gradient(135deg, #1a0a2a 0%, #0a0a1a 50%, #2a0a3a 100%); }
+    .occult-3 { background: linear-gradient(135deg, #0f0a2a 0%, #1a0a2a 50%, #0a0a1a 100%); }
+    .occult-4 { background: linear-gradient(135deg, #2a0a3a 0%, #0f0a2a 50%, #1a0a2a 100%); }
+    .occult-5 { background: linear-gradient(135deg, #0a0a1a 0%, #2a0a3a 50%, #0f0a2a 100%); }
+    .occult-6 { background: linear-gradient(135deg, #1a0a2a 0%, #0a0a1a 50%, #2a0a3a 100%); }
+    .occult-7 { background: linear-gradient(135deg, #0f0a2a 0%, #2a0a3a 50%, #0a0a1a 100%); }
+    .occult-8 { background: linear-gradient(135deg, #2a0a3a 0%, #1a0a2a 50%, #0a0a1a 100%); }
+    .occult-9 { background: linear-gradient(135deg, #0a0a1a 0%, #0f0a2a 50%, #1a0a2a 100%); }
+    .occult-10 { background: linear-gradient(135deg, #1a0a2a 0%, #0a0a1a 50%, #2a0a3a 100%); }
+
+    /* ========== FOOTER ========== */
+    .master-footer {
+      border-top: 1px solid var(--border); padding: 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px; margin-top: 80px;
+    }
+    .master-footer-brand {
+      font-family: var(--font-display); font-size: 0.875rem;
+      letter-spacing: 0.15em; color: var(--white); font-weight: 700;
+    }
+    .master-footer-copy {
+      font-size: 0.75rem; color: var(--stone);
+    }
+    .master-footer-studio {
+      font-size: 0.625rem; letter-spacing: 0.1em; color: var(--muted);
+    }
+    .master-footer-studio span { color: #e74c3c; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 60px 24px; }
+      .intro { padding: 80px 24px; }
+      .collection { padding: 60px 24px 100px; scroll-margin-top: calc(var(--nav-height) + 10px); }
+      .world-grid { grid-template-columns: 1fr; }
+      .world-card { aspect-ratio: 4/3; }
+      .master-footer { padding: 24px; flex-direction: column; text-align: center; }
+      .nav-inner { padding: 0 24px; }
+      .hero-stats { gap: 32px; }
+      .section-divider { padding: 0 24px; }
+    }
+
+    /* ========== SELECTION ========== */
+    ::selection { background: rgba(154,124,82,0.3); color: var(--white); }
+
+    /* ========== SCROLLBAR ========== */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #222; }
+
+    /* ========== SCROLL REVEAL STATES ========== */
+    .reveal { opacity: 0; transform: translateY(80px); will-change: transform, opacity; }
+    .reveal-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+    .reveal-word span { display: inline-block; transform: translateY(100%); will-change: transform; }
+
+    /* ========== PARALLAX ========== */
+    [data-parallax] { will-change: transform; }
+
+    /* ========== CUSTOM CURSOR ========== */
+    .cursor-dot {
+      position: fixed; top: 0; left: 0; z-index: 10000;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--champagne);
+      pointer-events: none; mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-follower {
+      position: fixed; top: 0; left: 0; z-index: 10000;
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid rgba(212,196,168,0.4);
+      pointer-events: none; mix-blend-mode: difference;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    }
+    .cursor-follower.hovering {
+      width: 100px; height: 100px;
+      border-color: rgba(212,196,168,0.8);
+    }
+    @media (max-width: 768px) {
+      .cursor-dot, .cursor-follower { display: none !important; }
+    }
+
+    /* ========== HERO PARALLAX IMAGE ========== */
+    .hero-bg[data-parallax] { will-change: transform; }
+
+    /* ========== LOOK-BOOK PLACEHOLDER GRADIENTS ========== */
+    .lb-placeholder { width:100%; height:100%; position:absolute; top:0; left:0; filter: brightness(0.8) saturate(0.9); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .world-card:hover .lb-placeholder { filter: brightness(0.95) saturate(1); transform: scale(1.05); }
+    .lb-embassy { background: linear-gradient(135deg, #0f3460 0%, #16213e 30%, #e94560 70%, #1a1a2e 100%); }
+    .lb-observatory { background: linear-gradient(135deg, #1a1a2e 0%, #30363d 30%, #58a6ff 70%, #0d1117 100%); }
+
+    /* ========== LIGHT PASSING EFFECT ========== */
+    .light {
+      position: absolute; left: -40%; top: -20%;
+      width: 30%; height: 140%;
+      background: linear-gradient(90deg, transparent 0%, rgba(212,196,168,0.25) 40%, rgba(212,196,168,0.4) 50%, rgba(212,196,168,0.25) 60%, transparent 100%);
+      filter: blur(35px);
+      transform: rotate(18deg);
+      mix-blend-mode: screen;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <!-- ========== STICKY NAV ========== -->
+  <nav class="sticky-nav" id="stickyNav">
+    <div class="nav-inner">
+      <span class="nav-brand">Empathy Studio</span>
+      <span class="nav-brand">Empathy Studio</span>
+      <ul class="nav-links">
+        <li><a href="#hair-masters" data-section="hair-masters">Hair</a></li>
+        <li><a href="#lookbook-masters" data-section="lookbook-masters">Look-Book</a></li>
+        <li><a href="#cafe-masters" data-section="cafe-masters">Cafe</a></li>
+        <li><a href="#yoga-masters" data-section="yoga-masters">Yoga</a></li>
+        <li><a href="#restaurant-masters" data-section="restaurant-masters">Restaurant</a></li>
+        <li><a href="#occult-masters" data-section="occult-masters">Occult</a></li>
+        <li><a href="#film-masters" data-section="film-masters">Film</a></li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#hair-masters" data-section="hair-masters">Hair Masters</a>
+    <a href="#lookbook-masters" data-section="lookbook-masters">Look-Book Masters</a>
+    <a href="#cafe-masters" data-section="cafe-masters">Cafe Masters</a>
+    <a href="#yoga-masters" data-section="yoga-masters">Yoga Masters</a>
+    <a href="#restaurant-masters" data-section="restaurant-masters">Restaurant Masters</a>
+    <a href="#occult-masters" data-section="occult-masters">Occult Masters</a>
+    <a href="#film-masters" data-section="film-masters">Film Masters</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-label">A Collection by Empathy Studio</p>
+      <h1 class="hero-title">Masters <em>Collection</em></h1>
+      <p class="hero-sub">Seventy experiences. Seven worlds. A curated anthology of creative mastery — from the quiet precision of editorial minimalism to the dark ritualism of the occult.</p>
+      <div class="hero-line"></div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+<span class="hero-stat-num">7</span>
+            <span class="hero-stat-label">Collections</span>
+        </div>
+        <div class="hero-stat">
+<span class="hero-stat-num">70</span>
+            <span class="hero-stat-label">Experiences</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">1</span>
+          <span class="hero-stat-label">Vision</span>
+        </div>
+      </div>
+      <p class="hero-scroll">Scroll to explore</p>
+    </div>
+  </section>
+
+  <!-- ========== INTRO ========== -->
+  <section class="intro">
+    <p class="intro-label">The Anthology</p>
+    <p class="intro-text">
+      This is not a portfolio. This is a <em>cinematic anthology</em> — sixty creative experiences,
+      each built as a self-contained world with its own identity, motion language, and emotional architecture.
+      Six collections. One unified vision of mastery.
+    </p>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 1: HAIR MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="hair-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Hair Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">Ten worlds of hair artistry — from editorial minimalism to cinematic red carpet drama.</p>
+
+    <div class="world-grid">
+
+      <a href="https://hair-masters-nine.vercel.app/THE-ALCHEMIST/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/01-alchemist.jpg" alt="The Alchemist" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Alchemist</h3>
+          <p class="world-card-desc">Color Transformation</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-RUNWAY-ARCHITECT/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/02-runway.jpg" alt="The Runway Architect" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">The Runway Architect</h3>
+          <p class="world-card-desc">Industrial Backstage</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-BRIDAL-SCULPTOR/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/03-bridal.jpg" alt="The Bridal Sculptor" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">The Bridal Sculptor</h3>
+          <p class="world-card-desc">Bridal Hair Artistry</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-COLOR-FUTURIST/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/04-color.jpg" alt="The Color Futurist" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Color Futurist</h3>
+          <p class="world-card-desc">Digital Laboratory</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-EDITORIAL-MINIMALIST/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/05-editorial.jpg" alt="The Editorial Minimalist" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Editorial Minimalist</h3>
+          <p class="world-card-desc">Quiet Luxury</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-TEXTURE-POET/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/06-texture.png" alt="The Texture Poet" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">The Texture Poet</h3>
+          <p class="world-card-desc">Organic Warmth</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-AVANT-GARDE-TRANSFORMER/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/07-avant.png" alt="The Avant-Garde Transformer" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Avant-Garde Transformer</h3>
+          <p class="world-card-desc">Editorial &amp; Avant-Garde</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-RED-CARPET-DIRECTOR/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/08-redcarpet.jpg" alt="The Red Carpet Director" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">The Red Carpet Director</h3>
+          <p class="world-card-desc">Cinematic Glamour</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-PRECISION-CUTTER/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/09-precision.png" alt="The Precision Cutter" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">The Precision Cutter</h3>
+          <p class="world-card-desc">Bauhaus Geometry</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://hair-masters-nine.vercel.app/THE-HAIR-RITUALIST/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/hair/10-ritualist.png" alt="The Hair Ritualist" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">The Hair Ritualist</h3>
+          <p class="world-card-desc">Restorative Ceremony</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 2: LOOK-BOOK MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="lookbook-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Look-Book Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">Fashion editorials captured in light — each look-book a visual poem of style and identity.</p>
+
+    <div class="world-grid">
+
+      <a href="https://the-auction-snowy.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/01-the-auction.png" alt="The Auction" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Auction</h3>
+          <p class="world-card-desc">Curated Bidding Experience</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-ghost-two.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/02-the-ghost.jpg" alt="The Ghost" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">The Ghost</h3>
+          <p class="world-card-desc">Ethereal Minimalism</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-maze-iota.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/03-the-maze.jpg" alt="The Maze" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">The Maze</h3>
+          <p class="world-card-desc">Exploratory Navigation</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-embassy.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/04-the-embassy.jpg" alt="The Embassy" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Embassy</h3>
+          <p class="world-card-desc">Diplomatic Elegance</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-opera.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/05-the-opera.png" alt="The Opera" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Opera</h3>
+          <p class="world-card-desc">Dramatic Performance</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-imperial-express.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/06-imperial-express.png" alt="Imperial Express" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">Imperial Express</h3>
+          <p class="world-card-desc">Luxury Transit</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://the-observatory-olive.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/07-the-observatory.png" alt="The Observatory" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Observatory</h3>
+          <p class="world-card-desc">Celestial Vision</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cabaret-decadence-kappa.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/08-cabaret-decadence.png" alt="Cabaret Decadence" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">Cabaret Decadence</h3>
+          <p class="world-card-desc">Opulent Nightlife</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://elena-marchetti-livid.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/09-elena-marchetti.jpg" alt="Elena Marchetti" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">Elena Marchetti</h3>
+          <p class="world-card-desc">Italian Couture</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://yuki-tanaka-eight.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/lookbook/10-yuki-tanaka.jpg" alt="Yuki Tanaka" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">Yuki Tanaka</h3>
+          <p class="world-card-desc">Japanese Avant-Garde</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 3: CAFE MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="cafe-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Cafe Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">The ritual of coffee, reimagined — each cafe a sanctuary of aroma, craft, and quiet indulgence.</p>
+
+    <div class="world-grid">
+
+      <a href="https://01-the-embassy.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_01.jpg" alt="The Embassy" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Embassy</h3>
+          <p class="world-card-desc">Specialty Coffee Lounge</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://02-the-atelier.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_02.jpg" alt="La Equinox" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">La Equinox</h3>
+          <p class="world-card-desc">Artisan Bakery</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://03-noir-atelier.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_03.png" alt="Rust & Roast" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">Rust &amp; Roast</h3>
+          <p class="world-card-desc">Industrial Coffee House</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://04-the-altitude.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_04.png" alt="The Altitude" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Altitude</h3>
+          <p class="world-card-desc">High-End Espresso Bar</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://05-the-atelier-studio.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_05.jpg" alt="The Atelier Studio" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Atelier Studio</h3>
+          <p class="world-card-desc">Creative Coffee Space</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://06-the-garden.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_06.jpg" alt="The Garden" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">The Garden</h3>
+          <p class="world-card-desc">Botanical Cafe</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://07-the-roast.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_07.jpg" alt="The Roast" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Roast</h3>
+          <p class="world-card-desc">Bean Origin Stories</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://08-the-noir.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_08.jpg" alt="The Noir" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">The Noir</h3>
+          <p class="world-card-desc">After Dark Espresso Bar</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://09-the-oasis.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_09.jpg" alt="The Oasis" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">The Oasis</h3>
+          <p class="world-card-desc">Quiet Retreat Cafe</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://10-the-observatory.vercel.app" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/cafe/cover_10.jpg" alt="The Observatory" loading="lazy">`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">The Observatory</h3>
+          <p class="world-card-desc">Rooftop Coffee Experience</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 4: YOGA MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="yoga-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Yoga Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">Movement as meditation — each practice a journey inward, a returning to stillness.</p>
+
+    <div class="world-grid">
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-1"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Breath Weaver</h3>
+          <p class="world-card-desc">Pranayama Practice</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-2"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">The Flow Architect</h3>
+          <p class="world-card-desc">Vinyasa Sequences</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-3"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">The Stillness Guide</h3>
+          <p class="world-card-desc">Meditation &amp; Yin</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-4"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Sun Saluter</h3>
+          <p class="world-card-desc">Morning Rituals</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-5"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Balance Keeper</h3>
+          <p class="world-card-desc">Balance &amp; Core</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-6"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">The Sound Healer</h3>
+          <p class="world-card-desc">Sound Bath Integration</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-7"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Power Sage</h3>
+          <p class="world-card-desc">Power Yoga Flow</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-8"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">The Restorer</h3>
+          <p class="world-card-desc">Restorative Practice</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-9"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">The Chakra Mapper</h3>
+          <p class="world-card-desc">Energy Alignment</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img yoga-10"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">The Final Om</h3>
+          <p class="world-card-desc">Closing Meditation</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 5: RESTAURANT MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="restaurant-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Restaurant Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">Culinary theatre — each restaurant a stage where fire, flavor, and form converge.</p>
+
+    <div class="world-grid">
+
+      <a href="https://restaurant-01-alchemist.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-1"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Alchemist</h3>
+          <p class="world-card-desc">Molecular Gastronomy</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-02-sanctuary.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-2"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">The Sanctuary</h3>
+          <p class="world-card-desc">Sacred Dining</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-03-grand-palace.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-3"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">The Grand Palace</h3>
+          <p class="world-card-desc">Royal Feast</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-04-atlas.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-4"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Atlas</h3>
+          <p class="world-card-desc">World Cuisine</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-05-forge.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-5"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Forge</h3>
+          <p class="world-card-desc">Fire &amp; Steel</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-06-secret-garden.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-6"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">The Secret Garden</h3>
+          <p class="world-card-desc">Botanical Kitchen</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-07-foundry.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-7"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Foundry</h3>
+          <p class="world-card-desc">Industrial Dining</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-08-void.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-8"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">The Void</h3>
+          <p class="world-card-desc">Dark Dining</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-09-chronicle.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-9"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">The Chronicle</h3>
+          <p class="world-card-desc">Heritage Recipes</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://restaurant-10-machine.vercel.app" class="world-card" target="_blank">
+        <div class="placeholder-img restaurant-10"></div>
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">The Machine</h3>
+          <p class="world-card-desc">Precision Cuisine</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 6: OCCULT MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="occult-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Occult Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">The unseen made visible — each ritual a doorway into shadow, symbol, and sacred mystery.</p>
+
+    <div class="world-grid">
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-1"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">The Tarot Architect</h3>
+          <p class="world-card-desc">Arcana &amp; Symbolism</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-2"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">The Shadow Weaver</h3>
+          <p class="world-card-desc">Dark Thread Work</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-3"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">The Ritualist</h3>
+          <p class="world-card-desc">Sacred Ceremony</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-4"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">The Cipher Keeper</h3>
+          <p class="world-card-desc">Encoded Messages</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-5"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">The Moon Channel</h3>
+          <p class="world-card-desc">Lunar Divination</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-6"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">The Bone Reader</h3>
+          <p class="world-card-desc">Ancient Oracle</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-7"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">The Sigil Scribe</h3>
+          <p class="world-card-desc">Symbol Magic</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-8"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">The Veil Walker</h3>
+          <p class="world-card-desc">Between Worlds</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-9"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">The Enochian Door</h3>
+          <p class="world-card-desc">Celestial Language</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="#" class="world-card" target="_blank">
+        <div class="placeholder-img occult-10"></div>`n        <div class="light"></div>`n        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">The Final Rite</h3>
+          <p class="world-card-desc">Closing the Circle</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="section-divider"><div class="section-divider-inner"></div></div>
+
+  <!-- ================================================================ -->
+  <!-- COLLECTION 7: FILM MASTERS -->
+  <!-- ================================================================ -->
+  <section class="collection" id="film-masters">
+    <div class="collection-header">
+      <div class="collection-title-group">
+        <h2 class="collection-title">Film Masters</h2>
+        <span class="collection-count">10 Experiences</span>
+      </div>
+    </div>
+    <p class="collection-tagline">Ten directors, ten visions — cinematic worlds crafted with light, shadow, and soul.</p>
+
+    <div class="world-grid">
+
+      <a href="https://cinema-sotd.vercel.app/marie-dubois/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/01-marie-dubois.jpg" alt="Marie Dubois" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 01</span>
+          <h3 class="world-card-name">Marie Dubois</h3>
+          <p class="world-card-desc">Parisian Noir</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/amin-hassani/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/02-amin-hassani.jpg" alt="Amin Hassani" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 02</span>
+          <h3 class="world-card-name">Amin Hassani</h3>
+          <p class="world-card-desc">Desert Epics</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/clara-voss/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/03-clara-voss.jpg" alt="Clara Voss" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 03</span>
+          <h3 class="world-card-name">Clara Voss</h3>
+          <p class="world-card-desc">Cold Aesthetics</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/isabelle-frost/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/04-isabelle-frost.jpg" alt="Isabelle Frost" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 04</span>
+          <h3 class="world-card-name">Isabelle Frost</h3>
+          <p class="world-card-desc">Winter Light</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/kofi-mensah/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/05-kofi-mensah.jpg" alt="Kofi Mensah" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 05</span>
+          <h3 class="world-card-name">Kofi Mensah</h3>
+          <p class="world-card-desc">Afro-Cinema</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/nadia-okafor/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/06-nadia-okafor.jpg" alt="Nadia Okafor" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 06</span>
+          <h3 class="world-card-name">Nadia Okafor</h3>
+          <p class="world-card-desc">Raw Documentary</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/thomas-renard/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/07-thomas-renard.jpg" alt="Thomas Renard" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 07</span>
+          <h3 class="world-card-name">Thomas Renard</h3>
+          <p class="world-card-desc">French New Wave</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/rafael-santos/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/08-rafael-santos.jpg" alt="Rafael Santos" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 08</span>
+          <h3 class="world-card-name">Rafael Santos</h3>
+          <p class="world-card-desc">Latin Pulse</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/lea-moreau/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/09-lea-moreau.jpg" alt="Lea Moreau" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 09</span>
+          <h3 class="world-card-name">Lea Moreau</h3>
+          <p class="world-card-desc">Poetic Silence</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+      <a href="https://cinema-sotd.vercel.app/yuki-tanaka/" class="world-card" target="_blank">
+        <img class="world-card-img" src="images/film/10-yuki-tanaka.jpg" alt="Yuki Tanaka" loading="lazy">
+        <div class="light"></div>
+        <div class="world-card-overlay"></div>
+        <div class="world-card-content">
+          <span class="world-card-num">World 10</span>
+          <h3 class="world-card-name">Yuki Tanaka</h3>
+          <p class="world-card-desc">Tokyo Drift</p>
+        </div>
+        <div class="world-card-arrow">&rarr;</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="master-footer">
+    <span class="master-footer-brand">MASTERS COLLECTION</span>
+    <span class="master-footer-copy">&copy; 2026 All Rights Reserved</span>
+    <span class="master-footer-studio">made with love <span>&#10084;</span> by Empathy Studio</span>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <!-- ========== GSAP + SCROLLTRIGGER + LENIS ========== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <script>
+    // ==========================================
+    // 1. LENIS SMOOTH SCROLL
+    // ==========================================
+    const lenis = new Lenis({
+      lerp: 0.08,
+      duration: 1.4,
+      smoothWheel: true,
+    });
+
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    ScrollTrigger.scrollerProxy(document.documentElement, {
+      scrollTop(value) {
+        return arguments.length
+          ? lenis.scrollTo(value, { immediate: true })
+          : lenis.scroll;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0, left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+    });
+
+    // ==========================================
+    // 2. HERO PARALLAX
+    // ==========================================
+    gsap.to('.hero-bg', {
+      yPercent: 30,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
+    // Hero content fade out on scroll
+    gsap.to('.hero-content', {
+      y: -60,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: '60% top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
+
+    // ==========================================
+    // 3. INTRO REVEAL
+    // ==========================================
+    const introLabel = document.querySelector('.intro-label');
+    const introText = document.querySelector('.intro-text');
+    gsap.set([introLabel, introText], { opacity: 0, y: 50 });
+
+    ScrollTrigger.create({
+      trigger: '.intro',
+      start: 'top 85%',
+      once: true,
+      onEnter: () => {
+        gsap.to(introLabel, { y: 0, opacity: 1, duration: 1, ease: 'power4.out' });
+        gsap.to(introText, { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', delay: 0.15 });
+      },
+    });
+
+    // ==========================================
+    // 4. SECTION HEADERS REVEAL
+    // ==========================================
+    document.querySelectorAll('.collection').forEach((section) => {
+      const title = section.querySelector('.collection-title');
+      const count = section.querySelector('.collection-count');
+      const tagline = section.querySelector('.collection-tagline');
+
+      gsap.set([title, count, tagline], { opacity: 0, y: 40 });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          const tl = gsap.timeline();
+          tl.to(title, { y: 0, opacity: 1, duration: 0.9, ease: 'power4.out' })
+            .to(count, { y: 0, opacity: 1, duration: 0.6, ease: 'power4.out' }, '-=0.5')
+            .to(tagline, { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out' }, '-=0.4');
+        },
+      });
+    });
+
+    // ==========================================
+    // 5. CARD STAGGER REVEALS
+    // ==========================================
+    document.querySelectorAll('.world-grid').forEach((grid) => {
+      const cards = grid.querySelectorAll('.world-card');
+      gsap.set(cards, { opacity: 0, y: 80 });
+      ScrollTrigger.create({
+        trigger: grid,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(cards, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power4.out',
+            stagger: 0.08,
+          });
+        },
+      });
+    });
+
+    // ==========================================
+    // 6. SECTION DIVIDERS REVEAL
+    // ==========================================
+    document.querySelectorAll('.section-divider').forEach((divider) => {
+      gsap.set(divider, { scaleX: 0, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: divider,
+        start: 'top 90%',
+        once: true,
+        onEnter: () => {
+          gsap.to(divider, { scaleX: 1, opacity: 1, duration: 1.2, ease: 'power4.inOut' });
+        },
+      });
+    });
+
+    // ==========================================
+    // 7. LIGHT PASSING EFFECT ON CARD HOVER
+    // ==========================================
+    document.querySelectorAll('.world-card').forEach((card) => {
+      const light = card.querySelector('.light');
+      if (!light) return;
+      card.addEventListener('mouseenter', () => {
+        gsap.set(light, { x: '-40vw', opacity: 0 });
+        gsap.to(light, { opacity: 1, duration: 0.8, ease: 'power2.in' });
+        gsap.to(light, { x: '180vw', duration: 5, ease: 'none' });
+        gsap.to(light, { opacity: 0, duration: 0.8, delay: 4.2 });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.killTweensOf(light);
+        gsap.to(light, { opacity: 0, duration: 0.3 });
+      });
+    });
+
+    // ==========================================
+    // 8. COLLECTION TAGLINE PARALLAX (depth layers)
+    // ==========================================
+    document.querySelectorAll('.collection-tagline').forEach((el) => {
+      gsap.to(el, {
+        y: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    });
+
+    // ==========================================
+    // 9. HERO STAT COUNTER ANIMATION
+    // ==========================================
+    document.querySelectorAll('.hero-stat-num').forEach((el) => {
+      const target = parseInt(el.textContent, 10);
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: target,
+        duration: 2,
+        ease: 'power2.out',
+        delay: 1.2,
+        onUpdate: () => { el.textContent = Math.round(obj.val); },
+      });
+    });
+
+    // ==========================================
+    // 10. CUSTOM CURSOR
+    // ==========================================
+    (function initCursor() {
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+
+      const dot = document.createElement('div');
+      dot.className = 'cursor-dot';
+      const follower = document.createElement('div');
+      follower.className = 'cursor-follower';
+      document.body.appendChild(dot);
+      document.body.appendChild(follower);
+
+      let mouseX = -100, mouseY = -100;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        gsap.set(dot, { x: mouseX, y: mouseY });
+      });
+
+      const xTo = gsap.quickTo(follower, 'x', { duration: 0.4, ease: 'power3' });
+      const yTo = gsap.quickTo(follower, 'y', { duration: 0.4, ease: 'power3' });
+
+      gsap.ticker.add(() => { xTo(mouseX); yTo(mouseY); });
+
+      const hoverEls = document.querySelectorAll('a, button, .world-card');
+      hoverEls.forEach((el) => {
+        el.addEventListener('mouseenter', () => follower.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => follower.classList.remove('hovering'));
+      });
+    })();
+
+    // ==========================================
+    // 11. REFRESH ON FONTS + RESIZE
+    // ==========================================
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => ScrollTrigger.refresh(), 250);
+    });
+  </script>
+
+  <script>
+    // ==========================================
+    // STICKY NAV + SCROLL-SPY (existing logic)
+    // ==========================================
+    const stickyNav = document.getElementById('stickyNav');
+    const heroSection = document.querySelector('.hero');
+
+    function handleNavVisibility() {
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      if (window.scrollY > heroBottom - 100) {
+        stickyNav.classList.add('visible');
+      } else {
+        stickyNav.classList.remove('visible');
+      }
+    }
+
+    const sections = document.querySelectorAll('.collection');
+    const navLinks = document.querySelectorAll('.nav-links a, .nav-mobile a');
+
+    function handleScrollSpy() {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    lenis.on('scroll', () => {
+      handleNavVisibility();
+      handleScrollSpy();
+    });
+
+    const hamburger = document.getElementById('navHamburger');
+    const mobileNav = document.getElementById('navMobile');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
